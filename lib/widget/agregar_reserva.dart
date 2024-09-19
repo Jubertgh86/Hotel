@@ -58,7 +58,7 @@ class _AgregarReserva extends State<AgregarReserva> {
       backgroundColor: Colors.white, // Light background color
       content: ConstrainedBox(
         constraints: const BoxConstraints(
-            minWidth: 400, maxWidth: 400, minHeight: 300, maxHeight: 400),
+            minWidth: 400, maxWidth: 400, minHeight: 400, maxHeight: 500),
         child: Form(
           key: _key,
           child: SingleChildScrollView(
@@ -105,54 +105,51 @@ class _AgregarReserva extends State<AgregarReserva> {
                     ),
                   ),
                 ),
-                Row(
+                Column(
                   children: [
-                    Expanded(
-                      flex: 4,
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return 'Agregar Nombre';
-                            }
-                            return null;
-                          },
-                          controller: nomImput,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Nombre',
-                          ),
-                          autofocus: true,
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Agregar Nombre';
+                          }
+                          return null;
+                        },
+                        controller: nomImput,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Nombre',
                         ),
+                        autofocus: true,
                       ),
                     ),
+
                     //const SizedBox(width: 5),
                     // Quantity input
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value!.isEmpty || cantInput.text == '0') {
-                              return 'Agregar Cantidad';
-                            } else if (int.parse(cantInput.text) > intMax) {
-                              return 'La cantidad excede el valor permitido.';
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-                          ],
-                          controller: cantInput,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Cant.',
-                          ),
-                          autofocus: true,
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty || cantInput.text == '0') {
+                            return 'Agregar Cantidad';
+                          } else if (int.parse(cantInput.text) > intMax) {
+                            return 'La cantidad excede el valor permitido.';
+                          } else if (int.parse(value) >= 10) {
+                            return 'La cantidad excede el numero de personas por mesa (10).';
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                        ],
+                        controller: cantInput,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Cantidad',
                         ),
+                        autofocus: true,
                       ),
                     ),
                   ],
