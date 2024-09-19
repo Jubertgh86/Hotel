@@ -19,7 +19,7 @@ class ReservaProvider extends ChangeNotifier {
         reservas: []),
     Restaurante(
         nombre: 'Grappa',
-        tipo: 'estaurante italiano',
+        tipo: 'Restaurante italiano',
         capacidad: 2,
         img: 'italiano.jpeg',
         reservas: []),
